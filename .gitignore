@@ -1,0 +1,22 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/JumpStart/JumpStart.Common/bin/Debug/net5.0
+/JumpStart/JumpStart.Common/obj
+/JumpStart/.vs/JumpStart
+/JumpStart/JumpStart.Database/obj/Debug
+/JumpStart/JumpStart.Database/bin/Debug
+/JumpStart/JumpStart.Entities/obj
+/JumpStart/JumpStart.Entities/bin/Debug/net5.0
+/JumpStart/JumpStart.Repositories/bin/Debug/net5.0
+/JumpStart/JumpStart.Repositories/obj
+/JumpStart/JumpStart.Resources/bin/Debug/net5.0
+/JumpStart/JumpStart.Resources/obj
+/JumpStart/JumpStart.Services/obj
+/JumpStart/JumpStart.Services/bin/Debug/net5.0
+/JumpStart/JumpStart.Web/bin/Debug/net5.0
+/JumpStart/JumpStart.Web/obj
+/JumpStart/JumpStart.WebApi/bin/Debug/net5.0
+/JumpStart/JumpStart.WebApi/obj
