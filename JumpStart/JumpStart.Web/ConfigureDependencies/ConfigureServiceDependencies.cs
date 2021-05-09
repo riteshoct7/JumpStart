@@ -1,5 +1,6 @@
 ﻿using JumpStart.Services.Implementation;
 using JumpStart.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace JumpStart.Web.ConfigureDependencies
@@ -11,6 +12,7 @@ namespace JumpStart.Web.ConfigureDependencies
         public static void AddServices(IServiceCollection services)               
         {
             services.AddTransient<IContactUsService, ContactUsService>();
+            services.AddTransient<IAuthenticateService, AuthenticateService>();
         } 
 
         #endregion
