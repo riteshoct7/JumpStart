@@ -19,6 +19,7 @@ namespace JumpStart.Services.ConfigureDependencies
         public static void AddServices(IServiceCollection services, IConfiguration Configuration)
         {
             services.AddTransient<IContactUsRepository, ContactUsRepository>();
+            services.AddTransient<IStoredProcedureRepository, StoredProcedureRepository>();
 
             services.AddDbContextPool<JumpStartDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultDbConnection"))

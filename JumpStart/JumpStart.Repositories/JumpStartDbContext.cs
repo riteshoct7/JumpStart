@@ -14,10 +14,10 @@ namespace JumpStart.Repositories
 
         }
 
-        public JumpStartDbContext(DbContextOptions<JumpStartDbContext> options) : base(options)
-        {
+        //public JumpStartDbContext(DbContextOptions<JumpStartDbContext> options) : base(options)
+        //{
 
-        }
+        //}
 
         #endregion
 
@@ -35,7 +35,15 @@ namespace JumpStart.Repositories
 
         #region Properties
 
-        public DbSet<ContactUs> ContactUs { get; set; } 
+        public DbSet<ContactUs> ContactUs { get; set; }
+
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<ExpenseCategory> ExpenseCategories { get; set; }
+        public DbSet<Expenses> Expenses { get; set; }
+
+        public DbSet<Country> Country { get; set; }
+        public DbSet<State> State { get; set; }
+        public DbSet<City> City  { get; set; }
 
         #endregion
 
