@@ -1,7 +1,11 @@
 ﻿using AutoMapper;
+using JumpStart.Common;
+using JumpStart.Entities.Models;
 using JumpStart.Services.Interfaces;
 using JumpStart.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace JumpStart.Web.Controllers
 {
@@ -10,14 +14,14 @@ namespace JumpStart.Web.Controllers
 
         #region Properties
 
-        private readonly IAuthenticateService authenticateService;
+        private readonly IAuthenticationService authenticateService;
         private readonly IMapper mapper;
 
         #endregion
 
         #region Constructors
 
-        public AccountsController(IAuthenticateService authenticateService, IMapper mapper)
+        public AccountsController(IAuthenticationService authenticateService, IMapper mapper)
         {
             this.authenticateService = authenticateService;
             this.mapper = mapper;
@@ -34,8 +38,26 @@ namespace JumpStart.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public IActionResult Login(LoginViewModel model, string returnUrl)
         {
+            if (ModelState.IsValid)
+            {
+                var user = authenticateService.Login(model.UserName, model.Password, model.RememberMe);
+                if (user != null)
+                {
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                        return Redirect(returnUrl);
+
+                    if (user.Roles.Contains("Admin"))
+                    {
+                        return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+                    }
+                    else if (user.Roles.Contains("User"))
+                    {
+                        return RedirectToAction("Index", "Dashboard", new { area = "User" });
+                    }
+                }
+            }
             return View();
         }
 
@@ -46,9 +68,20 @@ namespace JumpStart.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult SignUp(SignUpViewModel model)
-        {
-            return View();
+        public async Task<IActionResult> SignUp(SignUpViewModel model)
+        {        
+            if (ModelState.IsValid)
+            {
+                User objUser = mapper.Map<User>(model);
+                objUser.UserName = model.Email;
+                objUser.CreatedDate = Util.GetCurrentDateTime();
+                bool result = await authenticateService.SignUp(objUser, model.Password);
+                if (result)
+                {
+                    return RedirectToAction("Login");
+                }
+            }
+            return View(model);
         }
 
 
@@ -65,7 +98,12 @@ namespace JumpStart.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult LogOut()
+        public async Task<IActionResult> LogOut()
+        {
+            await authenticateService.SignOut();
+            return RedirectToAction("LogOutComplete");
+        }   
+        public IActionResult LogOutComplete()
         {
             return View();
         }

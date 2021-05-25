@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JumpStart.Entities.Models
 {
@@ -21,6 +22,9 @@ namespace JumpStart.Entities.Models
         public bool IsAgreeToTermsConditions { get; set; }
 
         public string PhoneNo { get; set; } 
+
+        [NotMapped]
+        public string[] Roles { get; set; }
 
         #endregion
 

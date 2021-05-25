@@ -13,6 +13,7 @@ namespace JumpStart.Web.Helper
         {
             CreateMap<ContactUseViewModel, ContactUs>().ReverseMap();
             CreateMap<ContactUsModel, ContactUs>().ReverseMap();
+            CreateMap<SignUpViewModel, User>().ReverseMap();
         }
 
         #endregion

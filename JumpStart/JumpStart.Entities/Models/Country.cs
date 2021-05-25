@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JumpStart.Entities.Models
 {
@@ -15,6 +16,8 @@ namespace JumpStart.Entities.Models
         public string ISDCode { get; set; }
 
         public string Dscription { get; set; } 
+
+        public ICollection<State> States { get; set; }
 
         #endregion
 

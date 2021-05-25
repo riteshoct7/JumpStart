@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JumpStart.Entities.Models
 {
@@ -13,9 +14,12 @@ namespace JumpStart.Entities.Models
 
         public Decimal Amount { get; set; }
 
-        public string Description { get; set; }
+        public string Description { get; set; }        
 
-        public int CategoryId { get; set; } 
-        #endregion        
+        [ForeignKey("ExpenseCategory")]
+        public int ExpenseCategoryId { get; set; }
+        public ExpenseCategory ExpenseCategory { get; set; }
+
+        #endregion
     }
 }

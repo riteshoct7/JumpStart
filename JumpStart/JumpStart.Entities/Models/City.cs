@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JumpStart.Entities.Models
 {
@@ -12,6 +13,10 @@ namespace JumpStart.Entities.Models
         public string CityName { get; set; }
 
         public string Description { get; set; } 
+
+        [ForeignKey("State")]
+        public int StateId { get; set; }
+        public State State { get; set; }
 
         #endregion
 

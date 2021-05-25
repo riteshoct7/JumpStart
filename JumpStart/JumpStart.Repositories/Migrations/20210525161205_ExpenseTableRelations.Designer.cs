@@ -4,14 +4,16 @@ using JumpStart.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JumpStart.Repositories.Migrations
 {
     [DbContext(typeof(JumpStartDbContext))]
-    partial class JumpStartDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210525161205_ExpenseTableRelations")]
+    partial class ExpenseTableRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

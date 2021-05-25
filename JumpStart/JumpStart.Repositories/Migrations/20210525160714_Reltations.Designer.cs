@@ -4,14 +4,16 @@ using JumpStart.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JumpStart.Repositories.Migrations
 {
     [DbContext(typeof(JumpStartDbContext))]
-    partial class JumpStartDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210525160714_Reltations")]
+    partial class Reltations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,18 +135,16 @@ namespace JumpStart.Repositories.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ExpemseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ExpenseCategoryId")
-                        .HasColumnType("int");
-
                     b.HasKey("ExpensesID");
-
-                    b.HasIndex("ExpenseCategoryId");
 
                     b.ToTable("Expenses");
                 });
@@ -405,17 +405,6 @@ namespace JumpStart.Repositories.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("JumpStart.Entities.Models.Expenses", b =>
-                {
-                    b.HasOne("JumpStart.Entities.Models.ExpenseCategory", "ExpenseCategory")
-                        .WithMany("Expense")
-                        .HasForeignKey("ExpenseCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ExpenseCategory");
-                });
-
             modelBuilder.Entity("JumpStart.Entities.Models.State", b =>
                 {
                     b.HasOne("JumpStart.Entities.Models.Country", "Country")
@@ -481,11 +470,6 @@ namespace JumpStart.Repositories.Migrations
             modelBuilder.Entity("JumpStart.Entities.Models.Country", b =>
                 {
                     b.Navigation("States");
-                });
-
-            modelBuilder.Entity("JumpStart.Entities.Models.ExpenseCategory", b =>
-                {
-                    b.Navigation("Expense");
                 });
 
             modelBuilder.Entity("JumpStart.Entities.Models.State", b =>

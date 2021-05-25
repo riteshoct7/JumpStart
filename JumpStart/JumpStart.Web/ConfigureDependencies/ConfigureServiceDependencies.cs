@@ -13,6 +13,7 @@ namespace JumpStart.Web.ConfigureDependencies
         {
             services.AddTransient<IContactUsService, ContactUsService>();
             services.AddTransient<IAuthenticateService, AuthenticateService>();
+            services.AddTransient<Services.Interfaces.IAuthenticationService, Services.Implementation.AuthenticationService>();
         } 
 
         #endregion

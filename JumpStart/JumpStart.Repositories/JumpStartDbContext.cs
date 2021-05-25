@@ -14,10 +14,10 @@ namespace JumpStart.Repositories
 
         }
 
-        //public JumpStartDbContext(DbContextOptions<JumpStartDbContext> options) : base(options)
-        //{
+        public JumpStartDbContext(DbContextOptions<JumpStartDbContext> options) : base(options)
+        {
 
-        //}
+        }
 
         #endregion
 

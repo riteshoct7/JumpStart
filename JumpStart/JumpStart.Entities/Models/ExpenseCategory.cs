@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JumpStart.Entities.Models
 {
@@ -10,5 +11,7 @@ namespace JumpStart.Entities.Models
         [Required (ErrorMessage = "Category Name Required")]
         public string CategoryName { get; set; }
         public string Description { get; set; }
+
+        public ICollection<Expenses> Expense { get; set; }
     }
 }
