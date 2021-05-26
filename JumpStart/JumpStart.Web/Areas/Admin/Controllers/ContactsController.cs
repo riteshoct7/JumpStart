@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace JumpStart.Web.Areas.Admin.Controllers
-{
-    [Area("Admin")]
-    public class ContactsController : Controller
+{    
+    public class ContactsController : BaseController
     {
 
         #region Properties

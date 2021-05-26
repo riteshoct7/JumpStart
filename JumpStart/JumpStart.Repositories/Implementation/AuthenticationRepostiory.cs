@@ -67,15 +67,16 @@ namespace JumpStart.Repositories.Implementation
             var result = userManager.CreateAsync(user, password).Result;
             if (result.Succeeded)
             {
+                
                 if (!roleManager.RoleExistsAsync(Common.Constants.UserRoleTitle).Result)
                 {
                     Role objRole = new Role();
                     objRole.Name = Common.Constants.UserRoleTitle;
                     objRole.NormalizedName = Common.Constants.UserRoleTitle;
-                    objRole.Description = Common.Constants.UserRoleTitle;
+                    objRole.Description = Common.Constants.UserRoleTitle;                    
                     await roleManager.CreateAsync(objRole);
                 }
-                var roleResult = userManager.AddToRoleAsync(user, Common.Constants.UserRoleTitle).Result;
+                var roleResult = userManager.AddToRoleAsync(user, Common.Constants.UserRoleTitle).Result;                
                 if (roleResult.Succeeded)
                 {
                     return true;

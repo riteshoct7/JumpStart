@@ -2,10 +2,11 @@
 using JumpStart.Web.Helper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace JumpStart.Web.Areas.User.Controllers
+namespace JumpStart.Web.Areas.Admin.Controllers
 {
-    [JumpStartAuhtorize(Roles = Constants.UserRoleTitle)]
-    [Area(Constants.UserRoleTitle)]
+
+    [JumpStartAuhtorize(Roles = Constants.AdminRoleTitle)]
+    [Area(Constants.AdminRoleTitle)]
     public class BaseController : Controller
     {
         

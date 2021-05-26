@@ -10,24 +10,31 @@ namespace JumpStart.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        #region Constructors
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            this.env = env;
         }
+        #endregion
 
-        public IConfiguration Configuration { get; }
+        #region Properties
+
+        IWebHostEnvironment env { get; }
+        public IConfiguration Configuration { get; } 
+
+        #endregion
+
+        #region Methods
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
 
-            //Provide indcution for sevrices and repository
+            //Provide induction for services and repository
             ConfigureServiceDependencies.AddServices(services);
             ConfigureRepositoryDependencies.AddServices(services, Configuration);
-
-            //Add Auto Mapper 
-            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,9 +55,11 @@ namespace JumpStart.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
-
+            //Add below line for Area Routing
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -65,6 +74,8 @@ namespace JumpStart.Web
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
+        } 
+
+        #endregion
     }
 }

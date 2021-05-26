@@ -48,11 +48,13 @@ namespace JumpStart.Web.Controllers
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                         return Redirect(returnUrl);
 
-                    if (user.Roles.Contains("Admin"))
+                    
+
+                    if (user.Roles.Contains(Constants.AdminRoleTitle))
                     {
                         return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                     }
-                    else if (user.Roles.Contains("User"))
+                    else if (user.Roles.Contains(Constants.UserRoleTitle))
                     {
                         return RedirectToAction("Index", "Dashboard", new { area = "User" });
                     }
@@ -104,6 +106,11 @@ namespace JumpStart.Web.Controllers
             return RedirectToAction("LogOutComplete");
         }   
         public IActionResult LogOutComplete()
+        {
+            return View();
+        }
+
+        public IActionResult Unauthorize()
         {
             return View();
         }
