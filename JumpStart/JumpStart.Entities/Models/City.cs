@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JumpStart.Entities.Models
 {
+    
     public class City
     {
         #region Properties

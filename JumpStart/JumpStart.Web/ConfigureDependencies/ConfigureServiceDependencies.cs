@@ -12,7 +12,9 @@ namespace JumpStart.Web.ConfigureDependencies
         {
             // Specify Services
             services.AddTransient<IContactUsService, ContactUsService>();
+            services.AddTransient<ICountryService, CountryService>();
             services.AddTransient<IAuthenticateService, AuthenticateService>();
+            services.AddTransient<IStoredProcedureService, StoredProcedureService>();
             services.AddTransient<Services.Interfaces.IAuthenticationService, Services.Implementation.AuthenticationService>();
 
             //Add Auto Mapper 

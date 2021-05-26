@@ -1,0 +1,54 @@
+﻿@model IEnumerable<JumpStart.Entities.Models.Country>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>
+    Country List
+
+    <span class="flot-right">
+        <a asp-action="Create" class="float-right  btn btn-info">Add Country</a>
+    </span>
+
+
+</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.CountryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISDCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dscription)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ISDCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dscription)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.CountryId  })
+                    @Html.ActionLink("Delete", "Delete", new {  id=item.CountryId  })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

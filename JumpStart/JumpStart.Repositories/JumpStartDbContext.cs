@@ -1,6 +1,8 @@
 ﻿using JumpStart.Entities.Models;
+using JumpStart.Entities.Models.SPModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JumpStart.Repositories
 {
@@ -44,6 +46,8 @@ namespace JumpStart.Repositories
         public DbSet<Country> Country { get; set; }
         public DbSet<State> State { get; set; }
         public DbSet<City> City  { get; set; }
+        
+        public DbSet<ExpenseDetailsSPModel> ExpenseDetailsSPModel { get; set; }
 
         #endregion
 

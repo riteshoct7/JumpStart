@@ -1,14 +1,11 @@
-﻿using JumpStart.Entities.Models.SPModels;
+﻿using JumpStart.Entities.Models;
+using JumpStart.Entities.Models.SPModels;
 using JumpStart.Repositories.Interfaces;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Data;
-
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JumpStart.Repositories.Implementation
 {
@@ -24,25 +21,28 @@ namespace JumpStart.Repositories.Implementation
 
         #endregion
 
-        public List<GetCountrySPModel> GetCountries(int countryId)
+        public List<Country> GetCountries(int countryId)
         {
             using (JumpStartDbContext context = new JumpStartDbContext())
             {
                 List<SqlParameter> parameters = new List<SqlParameter>();
                 parameters.Add(new SqlParameter("@CountryId", SqlDbType.Int) { Value = countryId });
-
-                //List<GetCountrySPModel> lstCountries = new List<GetCountrySPModel>();
-                //= context.Database.ExecuteSqlCommand("usp_GetUsersByRole @Role"
-                //, parameters.ToArray()).ToListAsync().Result;
-
-
-                //List<GetCountrySPModel> lstCountries = context.Database.ExecuteSqlRaw("exec usp_GetCountry @CountryId", parameters.ToArray());
-                //List<GetCountrySPModel> lstCountries = context.Database.ExecuteSqlRaw<GetCountrySPModel>("exec usp_GetCountry @CountryId", parameters.ToArray()).ToList();
-
-
-                //return lstCountries;
+                string sql = "exec usp_GetCountry @CountryId";                
+                var result = context.Countries.FromSqlRaw(sql, parameters.ToArray());
+                return result.ToList();
             }
-            throw new NotImplementedException();
+            
+        }
+        public List<ExpenseDetailsSPModel> GetExpenseDetailsByCategory(int id)
+        {
+            using (JumpStartDbContext context = new JumpStartDbContext())
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter("@ExpenseCategoryId", SqlDbType.Int) { Value = id });
+                string sql = "exec usp_ExpenseDetails @ExpenseCategoryId";
+                var result = context.ExpenseDetailsSPModel.FromSqlRaw(sql,parameters.ToArray()); 
+                return result.ToList();
+            }
         }
     }
 }

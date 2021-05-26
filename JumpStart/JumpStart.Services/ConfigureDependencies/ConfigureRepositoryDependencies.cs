@@ -17,6 +17,7 @@ namespace JumpStart.Services.ConfigureDependencies
 
             //specify induction for repository
             services.AddTransient<IContactUsRepository, ContactUsRepository>();
+            services.AddTransient<ICountryRepository, CountryRepository>();
             services.AddTransient<IStoredProcedureRepository, StoredProcedureRepository>();
             services.AddTransient<IAuthenticationRepostiory, AuthenticationRepostiory>();
 

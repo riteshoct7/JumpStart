@@ -2,14 +2,11 @@
 using JumpStart.Entities.Models.SPModels;
 using System.Collections.Generic;
 
-namespace JumpStart.Repositories.Interfaces
+namespace JumpStart.Services.Interfaces
 {
-    public interface IStoredProcedureRepository
+    public interface IStoredProcedureService
     {
-        #region Methods
-        List<Country> GetCountries(int countryId);
+        List<Country> GetAllCountries(int countryId);
         List<ExpenseDetailsSPModel> GetExpenseDetailsByCategory(int id);
-
-        #endregion
     }
 }
