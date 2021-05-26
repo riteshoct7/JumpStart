@@ -1,54 +1,106 @@
 ﻿@model IEnumerable<JumpStart.Entities.Models.Country>
 
 @{
-    ViewData["Title"] = "List";
+	ViewData["Title"] = "List";
 }
 
 <h1>
-    Country List
+ Country List
 
-    <span class="flot-right">
-        <a asp-action="Create" class="float-right  btn btn-info">Add Country</a>
-    </span>
+ <span class="flot-right">
+  <a asp-action="Create" class="float-right  btn btn-info">Add Country</a>
+ </span>
 
 
 </h1>
 
 
 <table class="table">
-    <thead>
-        <tr>
+ <thead>
+  <tr>
 
-            <th>
-                @Html.DisplayNameFor(model => model.CountryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ISDCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dscription)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CountryName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ISDCode)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Dscription)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new {  id=item.CountryId  })
-                    @Html.ActionLink("Delete", "Delete", new {  id=item.CountryId  })
-                </td>
-            </tr>
-        }
-    </tbody>
+   <th>
+				@Html.DisplayNameFor(model => model.CountryName)
+   </th>
+   <th>
+				@Html.DisplayNameFor(model => model.ISDCode)
+   </th>
+   <th>
+				@Html.DisplayNameFor(model => model.Dscription)
+   </th>
+   <th></th>
+  </tr>
+ </thead>
+ <tbody>
+		@foreach (var item in Model)
+		{
+	  <tr>
+	   <td>
+					@Html.DisplayFor(modelItem => item.CountryName)
+	   </td>
+	   <td>
+					@Html.DisplayFor(modelItem => item.ISDCode)
+	   </td>
+	   <td>
+					@Html.DisplayFor(modelItem => item.Dscription)
+	   </td>
+	   <td>
+					@Html.ActionLink("Edit", "Edit", new {  id=item.CountryId  })
+					@Html.ActionLink("Delete", "Delete", new {  id=item.CountryId  })
+	   </td>
+	  </tr>
+		}
+ </tbody>
 </table>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+ Launch demo modal
+</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog" role="document">
+  <div class="modal-content">
+        <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                <span aria-hidden="true">&times;</span>
+	        </button>
+        </div>
+        <div class="modal-body">
+	        <div>
+	            <p>Date and Time: <input type="text" id="dateTimePicker"></p>
+	        </div>
+	        <div>
+	            <p>Date: <input type="text" id="datePicker"></p>
+	        </div>
+	        <div>
+	            <p>Time: <input type="text" id="timePicker"></p>
+	        </div>
+        </div>
+        <div class="modal-footer">
+	            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+  </div>
+ </div>
+ </div>
+ <br />
+
+
+ 
+
+    
+
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
+ <script>
+  jQuery(function($) {
+   $("#dateTimePicker").datetimepicker();
+   $("#datePicker").datepicker();
+   $("#timePicker").timepicker();
+  });
+ </script>
